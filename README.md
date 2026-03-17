@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Eal Lourence R. Boco - Portfolio
 
 A modern, professional portfolio website for a Full-Stack Developer built with React, TypeScript, Tailwind CSS v4, and Motion.
@@ -68,3 +69,7 @@ npm run preview
 - **Projects**: Edit `src/app/data/projects.ts`
 - **Certifications**: Edit `src/app/data/certifications.ts`
 - **CV Download**: Add your CV file and link in the Hero section
+=======
+# rennz-portfolio
+My personal developer portfolio website
+>>>>>>> d8a644dcd2bc4f1120440df614ce2167b66e4124
