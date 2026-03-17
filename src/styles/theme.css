@@ -1,0 +1,27 @@
+/* Design System - Color Palette & Theme */
+:root {
+  /* Primary */
+  --color-primary: #2563EB;
+  --color-secondary: #10B981;
+  
+  /* Backgrounds */
+  --color-bg-white: #FFFFFF;
+  --color-bg-light: #F8FAFC;
+  
+  /* Text */
+  --color-text-dark: #111827;
+  --color-text-gray: #6B7280;
+  
+  /* Gradient */
+  --gradient-primary: linear-gradient(135deg, #2563EB, #10B981);
+  --gradient-horizontal: linear-gradient(90deg, #2563EB, #10B981);
+}
+
+/* Font families */
+.font-heading {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.font-body {
+  font-family: 'Inter', sans-serif;
+}
