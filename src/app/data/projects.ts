@@ -2,6 +2,7 @@ import type { Project } from "./types";
 import fitgymImg from "../../assets/images/fitgym.png";
 import signspeakImg from "../../assets/images/signspeak.png";
 import typeriumImg from "../../assets/images/typerium.png";
+import elixAiImg from "../../assets/images/elix-ai.png";
 
 export const projects: Project[] = [
   {
@@ -49,6 +50,15 @@ export const projects: Project[] = [
     techStack: ["React", "Supabase"],
     image: typeriumImg,
     accent: "purple",
+  },
+  {
+    id: 7,
+    title: "Elix AI",
+    description:
+      "A modern AI-powered chatbot application with a sleek chat interface, prompt credit system, and Supabase authentication for seamless user experience.",
+    techStack: ["React", "Supabase", "TypeScript"],
+    image: elixAiImg,
+    accent: "violet",
   },
   {
     id: 6,

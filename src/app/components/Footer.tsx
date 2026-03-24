@@ -81,7 +81,7 @@ export function Footer() {
             © 2026 Eal Lourence R. Boco. All rights reserved.
           </p>
           <p className="text-slate-500 text-sm">
-            Made with ❤️ using React & Tailwind CSS
+            Developed by Rence
           </p>
         </div>
       </div>

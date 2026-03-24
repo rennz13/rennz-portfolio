@@ -55,4 +55,13 @@ export const skillCategories: SkillCategory[] = [
       { name: "Figma", abbr: "FG" },
     ],
   },
+  {
+    id: "deployment",
+    title: "Deployment / Cloud",
+    accent: "cyan",
+    skills: [
+      { name: "Vercel", abbr: "VC" },
+      { name: "Render", abbr: "RD" },
+    ],
+  },
 ];
