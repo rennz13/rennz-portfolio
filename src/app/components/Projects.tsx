@@ -122,11 +122,6 @@ export function Projects() {
                     <ExternalLink size={18} />
                   </a>
                 </div>
-                {project.featured && (
-                  <span className="absolute top-3 left-3 px-2 py-1 rounded-md bg-[#2563EB] text-white text-xs font-medium">
-                    ⭐ Featured
-                  </span>
-                )}
                 <span className="absolute top-3 right-3 px-2 py-1 rounded-md bg-white/90 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 text-xs font-medium">
                   #{project.id}
                 </span>

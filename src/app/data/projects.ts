@@ -3,6 +3,7 @@ import fitgymImg from "../../assets/images/fitgym.png";
 import signspeakImg from "../../assets/images/signspeak.png";
 import typeriumImg from "../../assets/images/typerium.png";
 import elixAiImg from "../../assets/images/elix-ai.png";
+import sonaraImg from "../../assets/images/Sonara music playlist.png";
 
 export const projects: Project[] = [
   {
@@ -52,7 +53,7 @@ export const projects: Project[] = [
     accent: "purple",
   },
   {
-    id: 7,
+    id: 6,
     title: "Elix AI",
     description:
       "A modern AI-powered chatbot application with a sleek chat interface, prompt credit system, and Supabase authentication for seamless user experience.",
@@ -61,7 +62,17 @@ export const projects: Project[] = [
     accent: "violet",
   },
   {
-    id: 6,
+    id: 7,
+    title: "Sonara",
+    description:
+      "A premium dark-themed music discovery and playlist web application with a sleek sidebar, interactive music cards, and a sticky music player for an immersive listening experience.",
+    techStack: ["React", "TypeScript", "Vite"],
+    image: sonaraImg,
+    accent: "pink",
+    featured: true,
+  },
+  {
+    id: 8,
     title: "POS System",
     description:
       "A feature-rich Point of Sale system for retail businesses with inventory management, sales tracking, and receipt generation.",

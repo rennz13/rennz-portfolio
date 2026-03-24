@@ -71,9 +71,14 @@ export function Contact() {
         setStatusMessage("Your message has been sent successfully!");
         setFormData({ name: "", email: "", subject: "", message: "" });
       } catch (error) {
+        console.error("Email send error full details:", error);
         const message = error instanceof Error ? error.message : String(error);
-        console.error("Email send error:", error);
-        setStatusMessage(message.startsWith("Missing EmailJS env:") ? message : "Something went wrong while sending your message. Please try again.");
+        
+        if (message.startsWith("Missing EmailJS env:")) {
+          setStatusMessage(message);
+        } else {
+          setStatusMessage("Something went wrong. Please check your EmailJS service connection in the dashboard.");
+        }
       } finally {
         setIsSubmitting(false);
       }
