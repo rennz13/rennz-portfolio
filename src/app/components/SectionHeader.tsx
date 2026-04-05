@@ -25,12 +25,12 @@ export function SectionHeader({
   return (
     <div className="text-center mb-12 lg:mb-16">
       <div
-        className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-4 ${badgeClass}`}
+        className={`inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4 ${badgeClass}`}
       >
         {Icon && <Icon size={16} className={badgeVariant === "muted" ? "text-[#2563EB] dark:text-blue-400" : ""} />}
         {badge}
       </div>
-      <h2 className="font-heading font-bold text-3xl sm:text-4xl text-slate-900 dark:text-slate-100">
+      <h2 className="font-heading font-bold text-2xl sm:text-4xl text-slate-900 dark:text-slate-100">
         {parts[0]}
         <span
           className="bg-clip-text text-transparent"
@@ -41,7 +41,9 @@ export function SectionHeader({
         {parts[1]}
       </h2>
       {description && (
-        <p className="mt-3 text-slate-500 dark:text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">{description}</p>
+        <p className="mt-3 text-slate-500 dark:text-slate-400 text-[15px] sm:text-lg max-w-2xl mx-auto">
+          {description}
+        </p>
       )}
       <div
         className="mt-4 w-24 h-1 mx-auto rounded-full"

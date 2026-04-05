@@ -59,7 +59,7 @@ export function Projects() {
   const doubled = [...projects, ...projects];
 
   return (
-    <section id="projects" className="py-20 lg:py-28 bg-[#F8FAFC] dark:bg-slate-900">
+    <section id="projects" className="py-16 sm:py-20 lg:py-28 bg-[#F8FAFC] dark:bg-slate-900">
       {/* Header inside max-width container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
@@ -72,7 +72,7 @@ export function Projects() {
 
       {/* Full-bleed ticker */}
       <div
-        className="relative mt-12 overflow-hidden"
+        className="relative mt-8 sm:mt-12 overflow-hidden"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
@@ -83,7 +83,7 @@ export function Projects() {
         {/* Track */}
         <motion.div
           ref={trackRef}
-          className="flex gap-6 py-4 cursor-grab active:cursor-grabbing select-none"
+          className="flex gap-4 sm:gap-6 py-3 sm:py-4 cursor-grab active:cursor-grabbing select-none"
           style={{ x, willChange: "transform" }}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
@@ -93,11 +93,11 @@ export function Projects() {
           {doubled.map((project, i) => (
             <article
               key={`${project.id}-${i}`}
-              className="group flex-shrink-0 w-72 sm:w-80 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
+              className="group flex-shrink-0 w-64 sm:w-80 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
               style={{ touchAction: "none" }}
             >
               {/* Image */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-40 sm:h-48 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -122,17 +122,17 @@ export function Projects() {
                     <ExternalLink size={18} />
                   </a>
                 </div>
-                <span className="absolute top-3 right-3 px-2 py-1 rounded-md bg-white/90 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 text-xs font-medium">
+                <span className="absolute top-2.5 right-2.5 px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-md bg-white/90 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 text-[11px] sm:text-xs font-medium">
                   #{project.id}
                 </span>
               </div>
 
               {/* Body */}
-              <div className="p-4">
-                <h3 className="font-heading font-bold text-lg text-slate-900 dark:text-slate-100 mb-1.5">
+              <div className="p-3 sm:p-4">
+                <h3 className="font-heading font-bold text-base sm:text-lg text-slate-900 dark:text-slate-100 mb-1.5">
                   {project.title}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm mb-3 line-clamp-2">
+                <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm mb-2.5 sm:mb-3 line-clamp-2">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
@@ -141,7 +141,7 @@ export function Projects() {
                     return (
                       <span
                         key={tech}
-                        className="px-2 py-0.5 rounded text-xs font-medium"
+                        className="px-1.5 py-0.5 sm:px-2 rounded text-[11px] sm:text-xs font-medium"
                         style={{ backgroundColor: colors.bg, color: colors.color }}
                       >
                         {tech}
@@ -167,18 +167,18 @@ export function Projects() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-10 text-center"
+          className="mt-8 sm:mt-10 text-center"
         >
           <motion.a
-            href="https://github.com"
+            href="https://github.com/rennz13"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-[#2563EB] dark:border-blue-400 text-[#2563EB] dark:text-blue-400 font-medium hover:bg-[#2563EB] dark:hover:bg-blue-600 hover:text-white transition-colors"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-md sm:rounded-lg border-2 border-[#2563EB] dark:border-blue-400 text-[#2563EB] dark:text-blue-400 text-sm sm:text-base font-medium hover:bg-[#2563EB] dark:hover:bg-blue-600 hover:text-white transition-colors"
           >
             View More on GitHub
-            <ExternalLink size={18} />
+            <ExternalLink className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
           </motion.a>
         </motion.div>
       </div>

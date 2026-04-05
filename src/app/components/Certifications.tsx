@@ -78,7 +78,9 @@ export function Certifications() {
                   <h3 className="font-heading font-bold text-lg text-slate-900 dark:text-slate-100 mb-2">
                     {cert.title}
                   </h3>
-                  <p className="text-slate-600 dark:text-slate-300 text-sm mb-4">{cert.description}</p>
+                  <p className="text-slate-600 dark:text-slate-300 text-sm mb-4 text-justify">
+                    {cert.description}
+                  </p>
                   <div className="flex items-center justify-between text-sm">
                     <span style={{ color }} className="font-medium">
                       Cisco NetAcad · {cert.year}

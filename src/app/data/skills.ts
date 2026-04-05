@@ -7,6 +7,7 @@ export const skillCategories: SkillCategory[] = [
     accent: "blue",
     skills: [
       { name: "JavaScript", abbr: "JS" },
+      { name: "TypeScript", abbr: "TS" },
       { name: "Python", abbr: "PY" },
       { name: "PHP", abbr: "PHP" },
       { name: "Java", abbr: "JV" },
@@ -23,6 +24,15 @@ export const skillCategories: SkillCategory[] = [
       { name: "Tailwind CSS", abbr: "TW" },
       { name: "Bootstrap", abbr: "BS" },
       { name: "SASS", abbr: "SA" },
+    ],
+  },
+  {
+    id: "mobile",
+    title: "Mobile Development",
+    accent: "green",
+    skills: [
+      { name: "Flutter", abbr: "FL" },
+      { name: "React Native", abbr: "RN" },
     ],
   },
   {

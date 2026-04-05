@@ -29,12 +29,12 @@ const accentColors: Record<string, string> = {
 };
 
 const gradientClasses: Record<string, string> = {
-  blue: "from-blue-50 to-blue-50/50",
-  green: "from-green-50 to-green-50/50",
-  orange: "from-orange-50 to-orange-50/50",
-  purple: "from-purple-50 to-purple-50/50",
-  pink: "from-pink-50 to-pink-50/50",
-  cyan: "from-cyan-50 to-cyan-50/50",
+  blue: "from-blue-50 to-blue-50/50 dark:from-slate-800 dark:to-slate-900",
+  green: "from-green-50 to-green-50/50 dark:from-slate-800 dark:to-slate-900",
+  orange: "from-orange-50 to-orange-50/50 dark:from-slate-800 dark:to-slate-900",
+  purple: "from-purple-50 to-purple-50/50 dark:from-slate-800 dark:to-slate-900",
+  pink: "from-pink-50 to-pink-50/50 dark:from-slate-800 dark:to-slate-900",
+  cyan: "from-cyan-50 to-cyan-50/50 dark:from-slate-800 dark:to-slate-900",
 };
 
 export function Services() {
@@ -74,10 +74,12 @@ export function Services() {
                 >
                   <Icon className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="font-heading font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
+                <h3 className="font-heading font-bold text-xl text-slate-900 dark:text-white mb-2">
                   {service.title}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-base">{service.description}</p>
+                <p className="text-slate-600 dark:text-slate-200 text-base text-justify">
+                  {service.description}
+                </p>
                 <div
                   className="absolute bottom-0 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-300"
                   style={{ backgroundColor: color }}

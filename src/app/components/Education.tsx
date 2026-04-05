@@ -71,7 +71,7 @@ export function Education() {
                   </div>
                 ))}
               </div>
-              <p className="text-slate-600 dark:text-slate-300 text-base pt-2">
+              <p className="text-slate-600 dark:text-slate-300 text-base pt-2 text-justify">
                 Pursuing a degree in Information Technology with a focus on web development and
                 software engineering. Actively building projects and applying classroom knowledge
                 to real-world applications, growing as a full-stack developer.
@@ -85,21 +85,25 @@ export function Education() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-12 flex items-center justify-center gap-2"
+          className="mt-8 sm:mt-12 flex items-center justify-between sm:justify-center w-full max-w-[360px] sm:max-w-none mx-auto gap-0 sm:gap-2 px-2 sm:px-0"
         >
           {years.map((year, i) => (
-            <div key={year} className="flex items-center">
+            <div key={year} className="flex items-center flex-1 sm:flex-none min-w-0">
               <div className="flex flex-col items-center">
                 <div
-                  className={`w-4 h-4 rounded-full ${
+                  className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full ${
                     i < years.length - 1 ? "bg-[#2563EB]" : "bg-slate-300"
                   }`}
                 />
-                <span className="text-sm font-medium text-slate-600 mt-2">{year}</span>
+                <span className="text-[11px] sm:text-sm font-medium text-slate-600 mt-1 sm:mt-2">
+                  {year}
+                </span>
               </div>
               {i < years.length - 1 && (
                 <div
-                  className={`w-12 sm:w-16 h-0.5 ${i < years.length - 1 ? "bg-[#2563EB]" : "bg-slate-300"}`}
+                  className={`flex-1 sm:flex-none w-auto sm:w-16 h-0.5 mx-1 sm:mx-0 ${
+                    i < years.length - 1 ? "bg-[#2563EB]" : "bg-slate-300"
+                  }`}
                 />
               )}
             </div>

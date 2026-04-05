@@ -3,6 +3,7 @@ export const techColors: Record<string, { bg: string; color: string }> = {
   HTML: { bg: "#FFF0EB", color: "#E34F26" },
   CSS: { bg: "#E8F4FE", color: "#1572B6" },
   JavaScript: { bg: "#FEFCE8", color: "#D97706" },
+  TypeScript: { bg: "#EAF2FF", color: "#3178C6" },
   Python: { bg: "#E3F2FD", color: "#3776AB" },
   PHP: { bg: "#EDE7F6", color: "#777BB4" },
   Java: { bg: "#E0F4F7", color: "#007396" },
@@ -20,6 +21,7 @@ export const techColors: Record<string, { bg: string; color: string }> = {
   "VS Code": { bg: "#E8F4FE", color: "#007ACC" },
   Figma: { bg: "#FFF1EE", color: "#F24E1E" },
   Flutter: { bg: "#E8F4FE", color: "#0468D7" },
+  "React Native": { bg: "#E6F9FE", color: "#0891B2" },
 };
 
 /* Floating tech badges for hero - { left, top } in % */

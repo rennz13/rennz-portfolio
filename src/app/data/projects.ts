@@ -4,6 +4,7 @@ import signspeakImg from "../../assets/images/signspeak.png";
 import typeriumImg from "../../assets/images/typerium.png";
 import elixAiImg from "../../assets/images/elix-ai.png";
 import sonaraImg from "../../assets/images/Sonara music playlist.png";
+import eatOScanImg from "../../assets/images/Eat O` Scan.png";
 
 export const projects: Project[] = [
   {
@@ -79,5 +80,15 @@ export const projects: Project[] = [
     techStack: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
     accent: "pink",
+  },
+  {
+    id: 9,
+    title: "Eat O' Scan",
+    description:
+      "A smart food scanning project focused on quickly identifying meals and improving nutrition tracking with a simple, user-friendly experience.",
+    techStack: ["React", "TypeScript"],
+    image: eatOScanImg,
+    accent: "green",
+    featured: true,
   },
 ];

@@ -5,8 +5,8 @@ import {
   MessageCircle,
   Download,
   Github,
-  Linkedin,
   Facebook,
+  Instagram,
 } from "lucide-react";
 import { floatingTechBadges } from "../data/constants";
 import profileImage from "../../assets/images/profile.jpeg";
@@ -53,9 +53,13 @@ export function Hero() {
   }, [displayText, isDeleting, roleIndex]);
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com", label: "GitHub" },
+    { icon: Github, href: "https://github.com/rennz13", label: "GitHub" },
     { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61557206666104", label: "Facebook" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+    {
+      icon: Instagram,
+      href: "https://www.instagram.com/melonkikk?igsh=MW92MTduNTltMHU3MA==",
+      label: "Instagram",
+    },
   ];
 
   return (
@@ -113,15 +117,15 @@ export function Hero() {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/50 text-[#2563EB] dark:text-blue-300 text-sm font-medium ml-16 sm:ml-20">
-              <span className="relative flex h-2 w-2">
+            <div className="inline-flex items-center gap-1 sm:gap-2 px-2.5 py-1 sm:px-4 sm:py-2 rounded-full bg-blue-100 dark:bg-blue-900/50 text-[#2563EB] dark:text-blue-300 text-[11px] sm:text-sm font-medium ml-16 sm:ml-20">
+              <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-green-500" />
               </span>
               Available for opportunities
             </div>
 
-            <h1 className="font-heading font-extrabold text-4xl sm:text-5xl xl:text-6xl text-slate-900 dark:text-slate-100 leading-tight">
+            <h1 className="font-heading font-extrabold text-3xl sm:text-5xl xl:text-6xl text-slate-900 dark:text-slate-100 leading-tight">
               Hi, I'm{" "}
               <span
                 className="bg-clip-text text-transparent"
@@ -132,53 +136,53 @@ export function Hero() {
               .<span className="text-[#2563EB] animate-pulse">|</span>
             </h1>
 
-            <p className="text-slate-500 dark:text-slate-400 text-lg">Eal Lourence R. Boco</p>
+            <p className="text-slate-500 dark:text-slate-400 text-base sm:text-lg">Eal Lourence R. Boco</p>
 
             <div className="h-8 flex items-center">
-              <span className="text-xl sm:text-2xl text-slate-700 dark:text-slate-200 font-medium">
+              <span className="text-lg sm:text-2xl text-slate-700 dark:text-slate-200 font-medium">
                 {displayText}
                 <span className="animate-pulse">|</span>
               </span>
             </div>
 
-            <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg max-w-xl">
+            <p className="text-slate-600 dark:text-slate-300 text-[15px] sm:text-lg text-justify max-w-xl">
               I am a passionate developer who enjoys building modern, responsive, and user-friendly
               web applications that solve real-world problems.
             </p>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2 sm:gap-3">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => scrollToSection("projects")}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-medium"
+                className="inline-flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-6 sm:py-3 rounded-md sm:rounded-lg text-[13px] sm:text-base text-white font-medium"
                 style={{ background: "linear-gradient(135deg, #2563EB, #10B981)" }}
               >
                 View Projects
-                <ArrowRight size={18} />
+                <ArrowRight className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" />
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => scrollToSection("contact")}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-[#2563EB] dark:border-blue-400 text-[#2563EB] dark:text-blue-400 font-medium hover:bg-[#2563EB] dark:hover:bg-blue-600 hover:text-white transition-colors"
+                className="inline-flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-6 sm:py-3 rounded-md sm:rounded-lg border-2 border-[#2563EB] dark:border-blue-400 text-[#2563EB] dark:text-blue-400 text-[13px] sm:text-base font-medium hover:bg-[#2563EB] dark:hover:bg-blue-600 hover:text-white transition-colors"
               >
                 Contact Me
-                <MessageCircle size={18} />
+                <MessageCircle className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" />
               </motion.button>
               <motion.a
                 href="/cv-pdf.pdf"
                 download="Eal-Lourence-Boco-CV.pdf"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-medium hover:border-slate-400 dark:hover:border-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                className="inline-flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-6 sm:py-3 rounded-md sm:rounded-lg border-2 border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 text-[13px] sm:text-base font-medium hover:border-slate-400 dark:hover:border-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
               >
                 Download CV
-                <Download size={18} />
+                <Download className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" />
               </motion.a>
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-2 sm:gap-3">
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <motion.a
                   key={label}
@@ -186,10 +190,10 @@ export function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
-                  className="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-[#2563EB] dark:hover:bg-blue-600 hover:text-white text-slate-600 dark:text-slate-300 transition-colors"
+                  className="p-2 sm:p-2.5 rounded-md sm:rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-[#2563EB] dark:hover:bg-blue-600 hover:text-white text-slate-600 dark:text-slate-300 transition-colors"
                   aria-label={label}
                 >
-                  <Icon size={20} />
+                  <Icon className="w-[18px] h-[18px] sm:w-5 sm:h-5" />
                 </motion.a>
               ))}
             </div>
@@ -206,19 +210,19 @@ export function Hero() {
               {/* Rotating rings */}
               <motion.div
                 className="absolute inset-0 -m-4 rounded-full border-2 border-dashed border-[#2563EB]/30"
-                style={{ width: 288, height: 288 }}
+                style={{ width: 248, height: 248 }}
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               />
               <motion.div
                 className="absolute inset-0 -m-6 rounded-full border-2 border-dashed border-[#10B981]/30"
-                style={{ width: 320, height: 320 }}
+                style={{ width: 280, height: 280 }}
                 animate={{ rotate: -360 }}
                 transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
               />
 
               <div
-                className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full p-1"
+                className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full p-1"
                 style={{ background: "linear-gradient(135deg, #2563EB, #10B981)" }}
               >
                 <div className="w-full h-full rounded-full overflow-hidden bg-slate-200">
@@ -232,7 +236,7 @@ export function Hero() {
 
               {/* Decorative blur behind image */}
               <div
-                className="absolute -z-10 inset-0 w-64 h-64 lg:w-80 lg:h-80 rounded-full blur-2xl opacity-40"
+                className="absolute -z-10 inset-0 w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full blur-2xl opacity-40"
                 style={{ background: "linear-gradient(135deg, #2563EB, #10B981)" }}
               />
 
@@ -240,9 +244,9 @@ export function Hero() {
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 2.5, repeat: Infinity }}
-                className="absolute -bottom-2 -right-2 lg:right-0 px-4 py-2 rounded-lg bg-white dark:bg-slate-800 shadow-lg border border-slate-100 dark:border-slate-700"
+                className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 lg:right-0 px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg bg-white dark:bg-slate-800 shadow-lg border border-slate-100 dark:border-slate-700"
               >
-                <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
+                  <span className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-200">
                   🎓 BSIT Student / DNSC
                 </span>
                 <div className="absolute bottom-0 left-4 right-4 h-0.5 rounded bg-[#2563EB]" />
@@ -250,9 +254,9 @@ export function Hero() {
               <motion.div
                 animate={{ y: [0, 8, 0] }}
                 transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
-                className="absolute -top-2 -left-2 lg:left-0 px-4 py-2 rounded-lg bg-white dark:bg-slate-800 shadow-lg border border-slate-100 dark:border-slate-700"
+                className="absolute -top-1 -left-1 sm:-top-2 sm:-left-2 lg:left-0 px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg bg-white dark:bg-slate-800 shadow-lg border border-slate-100 dark:border-slate-700"
               >
-                <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
+                  <span className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-200">
                   ⚡ Full-Stack / Developer
                 </span>
                 <div className="absolute bottom-0 left-4 right-4 h-0.5 rounded bg-[#10B981]" />

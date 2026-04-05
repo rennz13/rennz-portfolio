@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Github, Linkedin, Facebook } from "lucide-react";
+import { Github, Facebook, Instagram } from "lucide-react";
 
 const navLinks = [
   { href: "#home", label: "Home" },
@@ -10,9 +10,13 @@ const navLinks = [
 ];
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: Github, href: "https://github.com/rennz13", label: "GitHub" },
   { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61557206666104", label: "Facebook" },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/melonkikk?igsh=MW92MTduNTltMHU3MA==",
+    label: "Instagram",
+  },
 ];
 
 const scrollToSection = (id: string) => {
