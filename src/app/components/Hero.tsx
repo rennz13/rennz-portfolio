@@ -171,7 +171,7 @@ export function Hero() {
                 <MessageCircle className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" />
               </motion.button>
               <motion.a
-                href="/cv-pdf.pdf"
+                href="/cv.pdf"
                 download="Eal-Lourence-Boco-CV.pdf"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
