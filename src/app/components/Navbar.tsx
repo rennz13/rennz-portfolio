@@ -14,14 +14,24 @@ const navLinks = [
   { href: "#contact", label: "Contact" },
 ];
 
-const scrollToSection = (id: string) => {
-  document.getElementById(id.replace("#", ""))?.scrollIntoView({ behavior: "smooth" });
+const scrollToSection = (target: string) => {
+  const id = target.replace("#", "");
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  const navOffset = 88;
+  const y = el.getBoundingClientRect().top + window.scrollY - navOffset;
+  window.scrollTo({ top: y, behavior: "smooth" });
 };
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const { theme, toggleTheme } = useTheme();
+  const handleMobileNavigate = (href: string) => {
+    setIsOpen(false);
+    window.setTimeout(() => scrollToSection(href), 180);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,6 +55,7 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <button
+            type="button"
             onClick={() => scrollToSection("home")}
             className="flex items-center gap-2 font-heading font-bold text-xl text-slate-900 dark:text-slate-100 hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors"
           >
@@ -64,6 +75,7 @@ export function Navbar() {
               const isActive = activeSection === id;
               return (
                 <button
+                  type="button"
                   key={link.href}
                   onClick={() => scrollToSection(id)}
                   className={`relative py-2 font-medium transition-colors ${
@@ -83,6 +95,7 @@ export function Navbar() {
 
           <div className="hidden lg:flex items-center gap-4">
             <motion.button
+              type="button"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
               onClick={toggleTheme}
@@ -92,6 +105,7 @@ export function Navbar() {
               {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
             </motion.button>
             <motion.button
+              type="button"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => scrollToSection("contact")}
@@ -105,6 +119,7 @@ export function Navbar() {
           {/* Mobile: theme toggle + menu button */}
           <div className="flex lg:hidden items-center gap-2">
             <motion.button
+              type="button"
               whileTap={{ scale: 0.97 }}
               onClick={toggleTheme}
               className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300"
@@ -113,6 +128,7 @@ export function Navbar() {
               {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
             </motion.button>
             <button
+              type="button"
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               aria-label="Toggle menu"
@@ -135,28 +151,25 @@ export function Navbar() {
             <div className="px-4 py-4 space-y-2">
               {navLinks.map((link) => (
                 <button
+                  type="button"
                   key={link.href}
-                  onClick={() => {
-                    scrollToSection(link.href.replace("#", ""));
-                    setIsOpen(false);
-                  }}
+                  onClick={() => handleMobileNavigate(link.href)}
                   className="block w-full text-left py-2 text-slate-600 dark:text-slate-300 hover:text-[#2563EB] dark:hover:text-blue-400 font-medium"
                 >
                   {link.label}
                 </button>
               ))}
               <motion.button
+                type="button"
                 whileTap={{ scale: 0.97 }}
-                onClick={() => {
-                  scrollToSection("contact");
-                  setIsOpen(false);
-                }}
+                onClick={() => handleMobileNavigate("#contact")}
                 className="w-full mt-4 py-3 rounded-lg bg-[#2563EB] dark:bg-blue-600 text-white font-medium flex items-center justify-center gap-2"
               >
                 <Briefcase size={18} />
                 Hire Me
               </motion.button>
               <motion.button
+                type="button"
                 whileTap={{ scale: 0.97 }}
                 onClick={toggleTheme}
                 className="w-full py-3 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium flex items-center justify-center gap-2"
