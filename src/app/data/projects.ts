@@ -5,6 +5,7 @@ import typeriumImg from "../../assets/images/typerium.png";
 import elixAiImg from "../../assets/images/elix-ai.png";
 import sonaraImg from "../../assets/images/Sonara music playlist.png";
 import eatOScanImg from "../../assets/images/Eat O` Scan.png";
+import talkTaImg from "../../assets/images/TalkTa.png";
 
 export const projects: Project[] = [
   {
@@ -86,9 +87,20 @@ export const projects: Project[] = [
     title: "Eat O' Scan",
     description:
       "A smart food scanning project focused on quickly identifying meals and improving nutrition tracking with a simple, user-friendly experience.",
-    techStack: ["React", "TypeScript"],
+    techStack: ["Flutter", "AI", "Machine Learning"],
     image: eatOScanImg,
     accent: "green",
     featured: true,
   },
+   {
+  id: 10,
+  title: "TalkTa",
+  description:
+    "An offline AI voice assistant built with React Native, using Vosk for on-device speech recognition and TTS for natural voice responses.",
+  techStack: ["React Native", "Java", "Vosk", "TTS", "AI", "Offline"],
+  image: talkTaImg,
+  accent: "green",
+  featured: true,
+},
+
 ];
