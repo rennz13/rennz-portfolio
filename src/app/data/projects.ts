@@ -6,6 +6,9 @@ import elixAiImg from "../../assets/images/elix-ai.png";
 import sonaraImg from "../../assets/images/Sonara music playlist.png";
 import eatOScanImg from "../../assets/images/Eat O` Scan.png";
 import talkTaImg from "../../assets/images/TalkTa.png";
+import weatherlyImg from "../../assets/images/weatherly.png";
+import vendifyPosImg from "../../assets/images/vendify POS.png";
+import snapboothImg from "../../assets/images/SnapBooth.png";
 
 export const projects: Project[] = [
   {
@@ -29,11 +32,11 @@ export const projects: Project[] = [
   },
   {
     id: 3,
-    title: "Weather Web App",
+    title: "Weatherly",
     description:
-      "A clean and minimal weather application that provides real-time weather data, forecasts, and location-based weather information.",
-    techStack: ["PHP"],
-    image: "https://images.unsplash.com/photo-1504386106331-3e4e71712b38?w=800&h=600&fit=crop",
+      "A clean and minimal weather application that provides real-time weather data, forecasts, and location-based weather information with map support.",
+    techStack: ["React", "Tailwind CSS", "WeatherAPI", "OpenStreetMap"],
+    image: weatherlyImg,
     accent: "cyan",
   },
   {
@@ -59,7 +62,7 @@ export const projects: Project[] = [
     title: "Elix AI",
     description:
       "A modern AI-powered chatbot application with a sleek chat interface, prompt credit system, and Supabase authentication for seamless user experience.",
-    techStack: ["React", "Supabase", "TypeScript"],
+    techStack: ["React", "Supabase", "TypeScript", "AI"],
     image: elixAiImg,
     accent: "violet",
   },
@@ -75,11 +78,11 @@ export const projects: Project[] = [
   },
   {
     id: 8,
-    title: "POS System",
+    title: "Vendify POS",
     description:
-      "A feature-rich Point of Sale system for retail businesses with inventory management, sales tracking, and receipt generation.",
-    techStack: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
+      "A feature-rich Point of Sale system for retail businesses with inventory management, order processing, customer management, and payment handling.",
+    techStack: ["PHP", "MySQL", "HTML", "CSS", "JavaScript", "Laravel"],
+    image: vendifyPosImg,
     accent: "pink",
   },
   {
@@ -92,15 +95,24 @@ export const projects: Project[] = [
     accent: "green",
     featured: true,
   },
-   {
-  id: 10,
-  title: "TalkTa",
-  description:
-    "An offline AI voice assistant built with React Native, using Vosk for on-device speech recognition and TTS for natural voice responses.",
-  techStack: ["React Native", "Java", "Vosk", "TTS", "AI", "Offline"],
-  image: talkTaImg,
-  accent: "green",
-  featured: true,
-},
+  {
+    id: 10,
+    title: "TalkTa",
+    description:
+      "An offline AI voice assistant built with React Native, using Vosk for on-device speech recognition and TTS for natural voice responses.",
+    techStack: ["React Native", "Java", "Vosk", "TTS", "AI", "Offline"],
+    image: talkTaImg,
+    accent: "green",
+    featured: true,
+  },
+  {
+    id: 11,
+    title: "Snapbooth",
+    description:
+      "A modern Snapbooth project card with a sleek dark hero section, product preview panel, and a clean content area with stack badges. It presents Snapbooth as a polished photo booth/web app experience with a stylish, portfolio-ready layout.",
+    techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "React Router"],
+    image: snapboothImg,
+    accent: "violet",
+  },
 
 ];

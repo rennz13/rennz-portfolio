@@ -8,7 +8,11 @@ export const techColors: Record<string, { bg: string; color: string }> = {
   PHP: { bg: "#EDE7F6", color: "#777BB4" },
   Java: { bg: "#E0F4F7", color: "#007396" },
   React: { bg: "#E0F7FE", color: "#0284C7" },
+  "React Router": { bg: "#FEF2F2", color: "#DC2626" },
+  "Framer Motion": { bg: "#EEF2FF", color: "#4338CA" },
   "Tailwind CSS": { bg: "#ECFEFF", color: "#06B6D4" },
+  WeatherAPI: { bg: "#EFF6FF", color: "#2563EB" },
+  OpenStreetMap: { bg: "#ECFDF5", color: "#15803D" },
   Bootstrap: { bg: "#F3F0FD", color: "#7952B3" },
   SASS: { bg: "#FDF0F6", color: "#CC6699" },
   "Node.js": { bg: "#F0FDF4", color: "#339933" },
@@ -22,6 +26,7 @@ export const techColors: Record<string, { bg: string; color: string }> = {
   Figma: { bg: "#FFF1EE", color: "#F24E1E" },
   Flutter: { bg: "#E8F4FE", color: "#0468D7" },
   "React Native": { bg: "#E6F9FE", color: "#0891B2" },
+  AI: { bg: "#F5F3FF", color: "#7C3AED" },
 };
 
 /* Floating tech badges for hero - { left, top } in % */
