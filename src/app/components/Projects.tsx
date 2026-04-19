@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { motion, useMotionValue, useAnimationFrame } from "motion/react";
 import { FolderOpen, Github, ExternalLink } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
+import { CodePopLayer } from "./CodePopLayer";
 import { projects } from "../data/projects";
 import { techColors } from "../data/constants";
 
@@ -15,7 +16,15 @@ const accentColors: Record<string, string> = {
   violet: "#7C3AED",
 };
 
-const SPEED = 48; // px per second — gentle drift
+const SPEED = 48;
+
+const wrapLoopX = (value: number, half: number) => {
+  if (half <= 0) return 0;
+  let next = value;
+  while (next >= 0) next -= half;
+  while (next < -half) next += half;
+  return next;
+};
 
 export function Projects() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -31,9 +40,8 @@ export function Projects() {
     if (!track) return;
     const half = track.scrollWidth / 2;
     if (half === 0) return;
-    let next = x.get() - (SPEED * delta) / 1000;
-    if (next <= -half) next += half; // snap reset for seamless loop
-    x.set(next);
+    const next = x.get() + (SPEED * delta) / 1000; // left -> right
+    x.set(wrapLoopX(next, half));
   });
 
   // Drag handlers — offset current x on pointer down/move/up
@@ -46,11 +54,8 @@ export function Projects() {
     if (!isDragging.current) return;
     const track = trackRef.current;
     const half = track ? track.scrollWidth / 2 : 0;
-    let next = e.clientX - dragStartX.current;
-    // keep in bounds so loop stays coherent
-    if (next > 0) next = next % -half + (-half === 0 ? 0 : 0); // clamp right
-    if (next < -half) next += half;
-    x.set(next);
+    const next = e.clientX - dragStartX.current;
+    x.set(wrapLoopX(next, half));
   };
   const handlePointerUp = () => {
     isDragging.current = false;
@@ -59,7 +64,8 @@ export function Projects() {
   const doubled = [...projects, ...projects];
 
   return (
-    <section id="projects" className="py-16 sm:py-20 lg:py-28 bg-[#F8FAFC] dark:bg-slate-900">
+    <section id="projects" className="code-pop-zone relative mt-10 sm:mt-14 lg:mt-20 py-6 sm:py-10 lg:py-14 bg-[#F8FAFC] dark:bg-slate-900 overflow-hidden">
+      <CodePopLayer />
       {/* Header inside max-width container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
@@ -72,7 +78,7 @@ export function Projects() {
 
       {/* Full-bleed ticker */}
       <div
-        className="relative mt-8 sm:mt-12 overflow-hidden"
+        className="relative mt-4 sm:mt-6 overflow-hidden"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
@@ -185,3 +191,6 @@ export function Projects() {
     </section>
   );
 }
+
+
+

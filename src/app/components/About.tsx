@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { User, MapPin, Mail, Phone, GraduationCap, Heart } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
+import { CodePopLayer } from "./CodePopLayer";
 
 const scrollToSection = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -50,7 +51,8 @@ const interests = [
 
 export function About() {
   return (
-    <section id="about" className="relative py-20 lg:py-28 bg-white dark:bg-slate-900 overflow-hidden">
+    <section id="about" className="code-pop-zone relative mt-6 sm:mt-8 lg:mt-10 py-6 sm:py-10 lg:py-14 bg-white dark:bg-slate-900 overflow-hidden">
+      <CodePopLayer />
       <div className="absolute top-20 right-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl" />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader badge="About Me" badgeIcon={User} title="Know Who I Am" gradientWord="Am" />
@@ -170,3 +172,4 @@ export function About() {
     </section>
   );
 }
+

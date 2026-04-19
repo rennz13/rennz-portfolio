@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "motion/react";
 import {
   ArrowRight,
@@ -18,6 +18,15 @@ const roles = [
   "UI/UX Enthusiast",
 ];
 
+type BinaryStream = {
+  id: number;
+  left: string;
+  duration: number;
+  delay: number;
+  intensityClass: string;
+  content: string;
+};
+
 const scrollToSection = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 };
@@ -26,6 +35,18 @@ export function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const binaryStreams = useMemo<BinaryStream[]>(
+    () =>
+      Array.from({ length: 26 }, (_, index) => ({
+        id: index,
+        left: `${(index / 26) * 100}%`,
+        duration: 16 + (index % 7) * 2.3,
+        delay: -index * 1.4,
+        intensityClass: `binary-rain-stream-${(index % 4) + 1}`,
+        content: Array.from({ length: 58 }, () => (Math.random() > 0.5 ? "1" : "0")).join("\n"),
+      })),
+    []
+  );
 
   useEffect(() => {
     const currentRole = roles[roleIndex];
@@ -67,6 +88,23 @@ export function Hero() {
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800"
     >
+      {/* Binary code rain background (Home only) */}
+      <div className="binary-rain-layer absolute inset-0 pointer-events-none" aria-hidden="true">
+        {binaryStreams.map((stream) => (
+          <span
+            key={stream.id}
+            className={`binary-rain-stream ${stream.intensityClass} absolute whitespace-pre select-none`}
+            style={{
+              left: stream.left,
+              animationDuration: `${stream.duration}s`,
+              animationDelay: `${stream.delay}s`,
+            }}
+          >
+            {stream.content}
+          </span>
+        ))}
+      </div>
+
       {/* Dotted pattern overlay */}
       <div
         className="absolute inset-0 opacity-30"
@@ -108,7 +146,7 @@ export function Hero() {
         ))}
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left content */}
           <motion.div

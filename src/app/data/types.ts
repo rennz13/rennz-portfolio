@@ -15,9 +15,10 @@ export interface Certification {
   title: string;
   description: string;
   year: string;
-  emoji: string;
+  issuer: string;
   icon: string;
   accent: string;
+  image: string;
 }
 
 export interface SkillCategory {

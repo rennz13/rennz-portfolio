@@ -52,18 +52,18 @@ export function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-700/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 md:h-16 lg:h-20">
           <button
             type="button"
             onClick={() => scrollToSection("home")}
             className="flex items-center gap-2 font-heading font-bold text-xl text-slate-900 dark:text-slate-100 hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors"
           >
             <span
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-[#06B6D4]"
+              className="w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center text-[#06B6D4]"
               style={{ background: "linear-gradient(135deg, #2563EB20, #10B98120)" }}
             >
-              <Code size={18} />
+              <Code size={16} className="md:w-[18px] md:h-[18px]" />
             </span>
             Rence.
           </button>
@@ -117,23 +117,23 @@ export function Navbar() {
           </div>
 
           {/* Mobile: theme toggle + menu button */}
-          <div className="flex lg:hidden items-center gap-2">
+          <div className="flex lg:hidden items-center gap-1.5">
             <motion.button
               type="button"
               whileTap={{ scale: 0.97 }}
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300"
+              className="p-1.5 md:p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300"
               aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
             >
-              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
             </motion.button>
             <button
               type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="p-1.5 md:p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               aria-label="Toggle menu"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X size={21} /> : <Menu size={21} />}
             </button>
           </div>
         </div>
@@ -148,13 +148,13 @@ export function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700"
           >
-            <div className="px-4 py-4 space-y-2">
+            <div className="px-4 py-3 space-y-1">
               {navLinks.map((link) => (
                 <button
                   type="button"
                   key={link.href}
                   onClick={() => handleMobileNavigate(link.href)}
-                  className="block w-full text-left py-2 text-slate-600 dark:text-slate-300 hover:text-[#2563EB] dark:hover:text-blue-400 font-medium"
+                  className="block w-full text-left py-1.5 text-[15px] text-slate-600 dark:text-slate-300 hover:text-[#2563EB] dark:hover:text-blue-400 font-medium"
                 >
                   {link.label}
                 </button>
@@ -163,18 +163,18 @@ export function Navbar() {
                 type="button"
                 whileTap={{ scale: 0.97 }}
                 onClick={() => handleMobileNavigate("#contact")}
-                className="w-full mt-4 py-3 rounded-lg bg-[#2563EB] dark:bg-blue-600 text-white font-medium flex items-center justify-center gap-2"
+                className="w-full mt-2 py-2.5 rounded-lg bg-[#2563EB] dark:bg-blue-600 text-sm text-white font-medium flex items-center justify-center gap-2"
               >
-                <Briefcase size={18} />
+                <Briefcase size={16} />
                 Hire Me
               </motion.button>
               <motion.button
                 type="button"
                 whileTap={{ scale: 0.97 }}
                 onClick={toggleTheme}
-                className="w-full py-3 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium flex items-center justify-center gap-2"
+                className="w-full py-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-sm text-slate-600 dark:text-slate-300 font-medium flex items-center justify-center gap-2"
               >
-                {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+                {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
                 {theme === "dark" ? "Light Mode" : "Dark Mode"}
               </motion.button>
             </div>
