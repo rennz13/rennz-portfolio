@@ -222,6 +222,25 @@ export function BlogUnavailable() {
       ctx.lineTo(canvas.width, state.groundY);
       ctx.stroke();
 
+      // Draw parallax background code fragments (drifting in the sky)
+      ctx.save();
+      ctx.fillStyle = isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.04)";
+      ctx.font = "9px monospace";
+      const bgSymbols = ["<div>", "const", "return", "{ }", "[]", "=>", "<html>", "0101", "import", "npm run"];
+      const bgSpeed = 0.8 * state.speedMultiplier;
+      for (let i = 0; i < 6; i++) {
+        // Deterministic drifting position wrapping around canvas width
+        const xOffset = i * 110;
+        const drift = (state.frameCount * bgSpeed) % (canvas.width + 100);
+        let drawX = xOffset - drift;
+        if (drawX < -80) {
+          drawX += (canvas.width + 100);
+        }
+        const y = 30 + (i * 24) % 65; // vertical spread
+        ctx.fillText(bgSymbols[i % bgSymbols.length], drawX, y);
+      }
+      ctx.restore();
+
       // Moving terrain lines (creates speed illusion)
       const offset = (state.frameCount * 5 * state.speedMultiplier) % 40;
       ctx.strokeStyle = isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(0, 0, 0, 0.03)";
@@ -456,11 +475,21 @@ export function BlogUnavailable() {
 
       // Draw Player: Rounded Neon Code Cube (labeled with E or [ ] )
       ctx.save();
+      
+      // Juice squish & stretch calculation based on vertical velocity
+      const stretchY = state.playerVy * 1.6;
+      const stretchX = -state.playerVy * 1.2;
+      const drawWidth = state.playerSize + stretchX;
+      const drawHeight = state.playerSize + stretchY;
+      const drawX = state.playerX - stretchX / 2;
+      // Anchor draw position to the bottom of the player's bounding box
+      const drawY = state.playerY + state.playerSize - drawHeight;
+
       const pGradient = ctx.createLinearGradient(
-        state.playerX,
-        state.playerY,
-        state.playerX + state.playerSize,
-        state.playerY + state.playerSize
+        drawX,
+        drawY,
+        drawX + drawWidth,
+        drawY + drawHeight
       );
       pGradient.addColorStop(0, primaryColor);
       pGradient.addColorStop(1, secondaryColor);
@@ -473,9 +502,9 @@ export function BlogUnavailable() {
       ctx.beginPath();
       const radius = 6;
       if (ctx.roundRect) {
-        ctx.roundRect(state.playerX, state.playerY, state.playerSize, state.playerSize, radius);
+        ctx.roundRect(drawX, drawY, drawWidth, drawHeight, radius);
       } else {
-        ctx.rect(state.playerX, state.playerY, state.playerSize, state.playerSize);
+        ctx.rect(drawX, drawY, drawWidth, drawHeight);
       }
       ctx.fill();
 
@@ -487,38 +516,23 @@ export function BlogUnavailable() {
         // Dead face
         ctx.font = "bold 13px sans-serif";
         ctx.textAlign = "center";
-        ctx.fillText("x_x", state.playerX + state.playerSize / 2, state.playerY + state.playerSize / 2 + 4);
+        ctx.fillText("x_x", drawX + drawWidth / 2, drawY + drawHeight / 2 + 4);
       } else if (state.isJumping) {
         // Happy jump face
         ctx.font = "bold 13px sans-serif";
         ctx.textAlign = "center";
-        ctx.fillText("^o^", state.playerX + state.playerSize / 2, state.playerY + state.playerSize / 2 + 4);
+        ctx.fillText("^o^", drawX + drawWidth / 2, drawY + drawHeight / 2 + 4);
       } else {
         // Standard "E" branding logo
         ctx.font = "bold 14px font-heading, sans-serif";
         ctx.textAlign = "center";
-        ctx.fillText("E", state.playerX + state.playerSize / 2, state.playerY + state.playerSize / 2 + 5);
+        ctx.fillText("E", drawX + drawWidth / 2, drawY + drawHeight / 2 + 5);
       }
       ctx.restore();
 
       // Continuous loop if not paused
       if (isPlaying && !gameOver) {
         requestRef.current = requestAnimationFrame(render);
-      } else {
-        // Redraw static state when game is stopped or over
-        if (gameOver) {
-          ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-          
-          ctx.fillStyle = "#FFFFFF";
-          ctx.font = "bold 20px font-heading, sans-serif";
-          ctx.textAlign = "center";
-          ctx.fillText("GAME OVER", canvas.width / 2, canvas.height / 2 - 15);
-          
-          ctx.fillStyle = "rgba(255,255,255,0.8)";
-          ctx.font = "11px sans-serif";
-          ctx.fillText("TAP OR PRESS SPACEBAR TO RESTART", canvas.width / 2, canvas.height / 2 + 10);
-        }
       }
     };
 
@@ -535,30 +549,30 @@ export function BlogUnavailable() {
   }, [isPlaying, gameOver, theme, muted]);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center p-4 transition-colors duration-300 relative overflow-hidden font-body select-none">
+    <div className="min-h-[100dvh] w-full bg-slate-50 dark:bg-slate-950 flex flex-col items-center p-3 sm:p-6 transition-colors duration-300 relative overflow-y-auto font-body select-none">
       {/* Dynamic decorative backdrop gradients */}
-      <div className="absolute top-10 left-1/4 w-[350px] h-[350px] bg-blue-500/10 dark:bg-blue-400/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-10 right-1/4 w-[350px] h-[350px] bg-emerald-500/10 dark:bg-emerald-400/5 rounded-full blur-3xl" />
+      <div className="absolute top-10 left-1/4 w-[350px] h-[350px] bg-blue-500/10 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-1/4 w-[350px] h-[350px] bg-emerald-500/10 dark:bg-emerald-400/5 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Navigation Header */}
-      <div className="absolute top-6 left-6 right-6 flex items-center justify-between z-20">
+      {/* Navigation Header - Fully responsive header controls as a block sibling */}
+      <div className="w-full max-w-lg flex items-center justify-between z-20 mb-6 mt-2 sm:mt-4">
         <a
           href="/"
           onClick={(e) => {
             e.preventDefault();
             window.location.href = "/";
           }}
-          className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors text-sm font-medium px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm"
+          className="inline-flex items-center gap-1.5 sm:gap-2 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors text-xs sm:text-sm font-medium px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm"
         >
-          <ArrowLeft className="w-4 h-4" />
-          Back to Portfolio
+          <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          <span>Back <span className="hidden sm:inline">to Portfolio</span></span>
         </a>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {/* Audio Indicator */}
           <button
             onClick={() => setMuted(!muted)}
-            className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
+            className="p-1.5 sm:p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
             title={muted ? "Unmute sounds" : "Mute sounds"}
           >
             {muted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
@@ -567,89 +581,101 @@ export function BlogUnavailable() {
           {/* Theme switcher */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
+            className="p-1.5 sm:p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
           >
             {theme === "dark" ? "🌞" : "🌙"}
           </button>
         </div>
       </div>
 
-      {/* Main card panel */}
-      <div className="w-full max-w-lg bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200 dark:border-slate-800/80 rounded-2xl p-6 sm:p-8 shadow-xl flex flex-col items-center text-center relative z-10">
-        <div className="w-16 h-16 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center mb-5 border border-amber-500/20">
-          <AlertTriangle className="w-8 h-8" />
+      {/* Main card panel - using my-auto for dynamic vertical centering */}
+      <div className="w-full max-w-lg bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200 dark:border-slate-800/80 rounded-2xl p-4 sm:p-8 shadow-xl flex flex-col items-center text-center relative z-10 my-auto">
+        <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center mb-4 sm:mb-5 border border-amber-500/20">
+          <AlertTriangle className="w-6 h-6 sm:w-8 sm:h-8" />
         </div>
 
-        <h1 className="text-2xl sm:text-3xl font-heading font-bold text-slate-900 dark:text-white mb-2 leading-tight">
+        <h1 className="text-xl sm:text-3xl font-heading font-bold text-slate-900 dark:text-white mb-2 leading-tight">
           Blog Temporarily{" "}
           <span className="bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
             Unavailable
           </span>
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 text-sm sm:text-base max-w-sm mb-6 leading-relaxed">
+        <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-base max-w-sm mb-5 sm:mb-6 leading-relaxed">
           I'm still gathering and preparing high-quality assets for the blog! In the meantime, try to jump over the bugs.
         </p>
 
-        {/* Scores indicators */}
-        <div className="w-full flex items-center justify-between mb-4 bg-slate-50 dark:bg-slate-950 px-4 py-2.5 rounded-xl border border-slate-100 dark:border-slate-900 text-sm font-medium">
+        {/* Scores indicators - responsive font sizing */}
+        <div className="w-full flex items-center justify-between mb-4 bg-slate-50 dark:bg-slate-950 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl border border-slate-100 dark:border-slate-900 text-xs sm:text-sm font-medium">
           <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300">
-            <Gamepad2 className="w-4 h-4 text-blue-500" />
+            <Gamepad2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-500" />
             Score: <span className="font-bold text-slate-900 dark:text-white">{score}</span>
           </div>
           <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300">
-            <Trophy className="w-4 h-4 text-amber-500" />
+            <Trophy className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-500" />
             High Score: <span className="font-bold text-slate-900 dark:text-white">{highScore}</span>
           </div>
         </div>
 
-        {/* Game Canvas Container */}
+        {/* Game Canvas Container - Aspect ratio locked for responsive scaling */}
         <div 
           onClick={jump}
-          className="relative w-full h-[180px] bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden cursor-pointer"
+          className="relative w-full aspect-[8/3] h-auto bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden cursor-pointer touch-none select-none"
         >
           <canvas
             ref={canvasRef}
             width={480}
             height={180}
-            className="w-full h-full block"
+            className="w-full h-full block absolute inset-0"
           />
 
           {/* Pre-start overlay */}
           {!isPlaying && (
-            <div className="absolute inset-0 bg-slate-900/50 flex flex-col items-center justify-center p-4">
+            <div className="absolute inset-0 bg-slate-900/50 flex flex-col items-center justify-center p-3 sm:p-4">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   resetGame();
                 }}
-                className="px-5 py-2.5 rounded-lg font-semibold text-sm text-white shadow-lg hover:shadow-xl transition-all scale-100 hover:scale-105 active:scale-95 inline-flex items-center gap-2"
+                className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg font-semibold text-xs sm:text-sm text-white shadow-lg hover:shadow-xl transition-all scale-100 hover:scale-105 active:scale-95 inline-flex items-center gap-2"
                 style={{ background: "linear-gradient(135deg, #2563EB, #10B981)" }}
               >
-                <Gamepad2 className="w-4 h-4" />
+                <Gamepad2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 Start Bug Runner
               </button>
-              <p className="text-[10px] text-white/70 mt-2 font-medium">
+              <p className="text-[9px] sm:text-[10px] text-white/70 mt-2 font-medium">
                 Tap or Spacebar to Jump. Double tap to Double Jump!
               </p>
+            </div>
+          )}
+
+          {/* Game Over overlay */}
+          {gameOver && (
+            <div className="absolute inset-0 bg-slate-900/70 flex flex-col items-center justify-center p-3 sm:p-4">
+              <h2 className="text-white text-base sm:text-xl font-heading font-bold mb-1 tracking-wider drop-shadow-md">
+                GAME OVER
+              </h2>
+              <p className="text-[10px] sm:text-xs text-white/90 mb-3 font-semibold">
+                Score: <span className="text-emerald-400">{score}</span>
+              </p>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  resetGame();
+                }}
+                className="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg font-semibold text-xs text-white shadow-lg hover:shadow-xl transition-all scale-100 hover:scale-105 active:scale-95 inline-flex items-center gap-1.5"
+                style={{ background: "linear-gradient(135deg, #EF4444, #F59E0B)" }}
+              >
+                <RotateCcw className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                Play Again
+              </button>
             </div>
           )}
         </div>
 
         {/* Tips / Instructions */}
-        <p className="text-[10.5px] sm:text-xs text-slate-400 dark:text-slate-500 mt-4 leading-normal flex items-center gap-1.5">
+        <p className="text-[10px] sm:text-xs text-slate-400 dark:text-slate-500 mt-4 leading-normal flex items-center gap-1.5 justify-center">
           <span>💡</span> Press **SPACEBAR** or **TAP** the screen to hop. Double-tap to double jump!
         </p>
-
-        {/* Game Over Reset Action outside canvas for convenience */}
-        {gameOver && (
-          <button
-            onClick={resetGame}
-            className="mt-5 inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-white bg-slate-800 dark:bg-slate-700 hover:bg-slate-700 dark:hover:bg-slate-600 rounded-lg shadow-sm transition-all scale-100 hover:scale-105 active:scale-95"
-          >
-            <RotateCcw className="w-3.5 h-3.5" />
-            Play Again
-          </button>
-        )}
       </div>
     </div>
   );
