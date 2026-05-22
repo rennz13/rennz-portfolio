@@ -54,9 +54,9 @@ export function BlogUnavailable() {
     groundY: 160,
     playerX: 60,
     playerSize: 30,
-    gravity: 0.6,
-    jumpForce: -10,
-    doubleJumpForce: -8,
+    gravity: 0.45,       // Smooth, floatier gravity
+    jumpForce: -8.5,     // Tailored jump height
+    doubleJumpForce: -7.2, // Tailored double jump height
     frameCount: 0,
   });
 
@@ -116,9 +116,9 @@ export function BlogUnavailable() {
       groundY,
       playerX: 60,
       playerSize: 30,
-      gravity: 0.6,
-      jumpForce: -10,
-      doubleJumpForce: -8,
+      gravity: 0.45,
+      jumpForce: -8.5,
+      doubleJumpForce: -7.2,
       frameCount: 0,
     };
     setScore(0);
