@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { User, MapPin, Mail, Phone, GraduationCap, Heart } from "lucide-react";
+import { User, MapPin, Mail, Phone, GraduationCap, Heart, ExternalLink } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 import { CodePopLayer } from "./CodePopLayer";
 
@@ -51,7 +51,7 @@ const interests = [
 
 export function About() {
   return (
-    <section id="about" className="code-pop-zone relative mt-6 sm:mt-8 lg:mt-10 py-6 sm:py-10 lg:py-14 bg-white dark:bg-slate-900 overflow-hidden">
+    <section id="about" className="code-pop-zone relative mt-6 sm:mt-8 lg:mt-10 pt-6 sm:pt-10 lg:pt-14 pb-12 sm:pb-20 lg:pb-28 bg-white dark:bg-slate-900 overflow-hidden">
       <CodePopLayer />
       <div className="absolute top-20 right-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl" />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -105,16 +105,18 @@ export function About() {
               ))}
             </div>
 
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => scrollToSection("contact")}
-              className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-md sm:rounded-lg text-sm sm:text-base text-white font-medium"
-              style={{ background: "linear-gradient(135deg, #2563EB, #10B981)" }}
-            >
-              Let's Work Together
-              <Heart className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
-            </motion.button>
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => scrollToSection("contact")}
+                className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-md sm:rounded-lg text-sm sm:text-base text-white font-medium shadow-md hover:shadow-lg transition-shadow"
+                style={{ background: "linear-gradient(135deg, #2563EB, #10B981)" }}
+              >
+                Let's Work Together
+                <Heart className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
+              </motion.button>
+            </div>
           </motion.div>
 
           {/* Right - Info cards + Stats */}
@@ -167,6 +169,21 @@ export function About() {
               </div>
             </motion.div>
           </motion.div>
+        </div>
+
+        {/* Centered View Blog Button */}
+        <div className="mt-12 sm:mt-16 text-center">
+          <motion.a
+            href="https://blog.rence.me"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-md sm:rounded-lg border-2 border-[#2563EB] dark:border-blue-400 text-[#2563EB] dark:text-blue-400 text-sm sm:text-base font-medium hover:bg-[#2563EB] dark:hover:bg-blue-600 hover:text-white transition-all shadow-sm hover:shadow-md"
+          >
+            View Blog
+            <ExternalLink className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
+          </motion.a>
         </div>
       </div>
     </section>

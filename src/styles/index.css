@@ -75,45 +75,6 @@ html:not(.dark) .binary-rain-stream {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
-
-  .cert-logo-flip {
-    animation: none !important;
-  }
-}
-
-.cert-flip-scene {
-  perspective: 1200px;
-}
-
-.cert-flip-inner {
-  position: relative;
-  width: 100%;
-  transform-style: preserve-3d;
-}
-
-.cert-flip-face {
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-.cert-flip-back {
-  transform: rotateY(180deg);
-}
-
-.cert-logo-flip {
-  transform-style: preserve-3d;
-  animation: cert-logo-flip 3.2s ease-in-out infinite;
-}
-
-@keyframes cert-logo-flip {
-  0%,
-  70%,
-  100% {
-    transform: rotateY(0deg);
-  }
-  85% {
-    transform: rotateY(180deg);
-  }
 }
 
 .code-pop-zone {
