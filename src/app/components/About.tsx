@@ -188,7 +188,7 @@ export function About() {
         {/* Centered View Blog Button */}
         <div className="mt-12 sm:mt-16 text-center">
           <motion.a
-            href="https://blog.rence.me"
+            href="/blog"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}

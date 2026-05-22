@@ -1,4 +1,5 @@
 import { motion, useScroll } from "motion/react";
+import { useState, useEffect } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import {
   Navbar,
@@ -11,6 +12,7 @@ import {
   Certifications,
   Contact,
   Footer,
+  BlogUnavailable,
 } from "./components";
 
 function ScrollProgressBar() {
@@ -28,6 +30,52 @@ function ScrollProgressBar() {
 }
 
 export default function App() {
+  const [currentPath, setCurrentPath] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.location.pathname;
+    }
+    return "/";
+  });
+
+  const [currentHash, setCurrentHash] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.location.hash;
+    }
+    return "";
+  });
+
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+      setCurrentHash(window.location.hash);
+    };
+
+    window.addEventListener("popstate", handleLocationChange);
+    window.addEventListener("hashchange", handleLocationChange);
+
+    const interval = setInterval(handleLocationChange, 500);
+
+    return () => {
+      window.removeEventListener("popstate", handleLocationChange);
+      window.removeEventListener("hashchange", handleLocationChange);
+      clearInterval(interval);
+    };
+  }, []);
+
+  const isBlog =
+    currentPath === "/blog" ||
+    currentPath === "/blog/" ||
+    currentHash === "#/blog" ||
+    (typeof window !== "undefined" && window.location.search.includes("page=blog"));
+
+  if (isBlog) {
+    return (
+      <ThemeProvider>
+        <BlogUnavailable />
+      </ThemeProvider>
+    );
+  }
+
   return (
     <ThemeProvider>
       <ScrollProgressBar />

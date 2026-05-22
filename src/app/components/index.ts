@@ -8,3 +8,4 @@ export { Education } from "./Education";
 export { Certifications } from "./Certifications";
 export { Contact } from "./Contact";
 export { Footer } from "./Footer";
+export { BlogUnavailable } from "./BlogUnavailable";
