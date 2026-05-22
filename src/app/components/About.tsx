@@ -105,7 +105,7 @@ export function About() {
               ))}
             </div>
 
-            <div className="hidden lg:flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
@@ -168,20 +168,6 @@ export function About() {
                 ))}
               </div>
             </motion.div>
-
-            {/* Mobile-only Let's Work Together button */}
-            <div className="flex lg:hidden flex-wrap items-center justify-start pt-2">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => scrollToSection("contact")}
-                className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-md sm:rounded-lg text-sm sm:text-base text-white font-medium shadow-md hover:shadow-lg transition-shadow w-full justify-center"
-                style={{ background: "linear-gradient(135deg, #2563EB, #10B981)" }}
-              >
-                Let's Work Together
-                <Heart className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
-              </motion.button>
-            </div>
           </motion.div>
         </div>
 
